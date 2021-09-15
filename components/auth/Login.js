@@ -1,5 +1,5 @@
 // Here I'm going to create a component. With a component we can
-// use state. This is the Register component:
+// use state. This is the Login component:
 
 // I use rcc for generate the code:
 
@@ -8,12 +8,11 @@ import { View, Button, TextInput } from 'react-native';
 import firebase from 'firebase/app';
 require('firebase/auth');
 
-export default class Register extends Component {
+export default class Login extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            name: '',
             email: '',
             password: ''
         };
@@ -21,12 +20,12 @@ export default class Register extends Component {
         this.onSignUp = this.onSignUp.bind(this);
     }
 
-    // This method makes the authorization for create the user email
+    // This method makes the authorization for sign in with the user email
     // and password:
     onSignUp(){
-        const { email, password, name } = this.state;
+        const { email, password } = this.state;
 
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        firebase.auth().signInWithEmailAndPassword(email, password)
         .then((result) => {
             console.log(result);
         })
@@ -39,10 +38,6 @@ export default class Register extends Component {
         return (
             <View>
                 <TextInput 
-                    placeholder="name" 
-                    onChangeText= { (name) => this.setState({ name: name})}
-                />
-                <TextInput 
                     placeholder="email" 
                     onChangeText= { (email) => this.setState({ email: email})}
                 />
@@ -53,7 +48,7 @@ export default class Register extends Component {
                 />
                 <Button
                     onPress={() => this.onSignUp()}
-                    title="Sign Up"
+                    title="Sign In"
                 />
             </View>
         );
