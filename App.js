@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './components/auth/Landing';
 import firebase from 'firebase/app';
+import RegisterScreen from './components/auth/Register';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -30,6 +30,9 @@ export default function App() {
       name="Landing" 
       component={LandingScreen} 
       options={{headerShown: false}} />
+      <Stack.Screen 
+      name="Register" 
+      component={RegisterScreen} />
     </Stack.Navigator>
   </NavigationContainer>
   );
