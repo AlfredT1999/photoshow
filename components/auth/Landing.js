@@ -10,12 +10,12 @@ import { Button, View } from 'react-native';
 
 /* View acts like div in HTML. */
 
-export default function Landing( navigation ) {// navigation is a props.
+export default function Landing( { navigation } ) {// navigation is a props.
     return (
         <View style={{flex: 1, justifyContent: 'center'}}>
             <Button 
                 title="Register"
-                onPress={() => navigation.navigate("Register")}
+                onPress={() => navigation.navigate('Register')}
             />
             <Button 
                 title="Login"

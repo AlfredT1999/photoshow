@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import { View, Button, TextInput } from 'react-native';
 import firebase from 'firebase/app';
+require('firebase/auth');
 
 export default class Register extends Component {
     constructor(props){
@@ -29,7 +30,7 @@ export default class Register extends Component {
         .then((result) => {
             console.log(result);
         })
-        .then((error) => {
+        .catch((error) => {
             console.log(error);
         });
     }
