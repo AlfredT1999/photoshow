@@ -1,5 +1,5 @@
 const initialState = {
-    currentUser = null
+    currentUser: null
 }
 
 // The parameter action has the next function:
