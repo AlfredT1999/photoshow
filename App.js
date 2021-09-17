@@ -5,7 +5,7 @@ import LandingScreen from './components/auth/Landing';
 import firebase from 'firebase/app';
 import RegisterScreen from './components/auth/Register';
 import LoginScreen from './components/auth/Login';
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {View, Text} from 'react-native';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -25,8 +25,6 @@ if(firebase.apps.length === 0){
 
 const Stack = createStackNavigator();
 
-import React, { Component } from 'react'
-
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -39,19 +37,19 @@ export class App extends Component {
   // componentDidMount() is a hook that gets invoked right after 
   // a React component has been mounted aka after the first render() lifecycle.
   componentDidMount() {
-    firebase.auth().onAuthStateChange((user) => {
-      if(!user){
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
         this.setState({
           loggedIn: false,
-          loaded: true
-        });
-      }else{
+          loaded: true,
+        })
+      } else {
         this.setState({
           loggedIn: true,
-          loaded: true
-        });
+          loaded: true,
+        })
       }
-    });
+    })
   }
 
   render() {
@@ -83,12 +81,14 @@ export class App extends Component {
         </NavigationContainer>
       );
     }
-
-    <View style={{flex: 1, justifyContent: 'center'}}>
+    
+    return (
+      <View style={{flex: 1, justifyContent: 'center'}}>
         <Text>
           User is logged in.
         </Text>
-    </View>
+      </View>
+    );
   }
 }
 
