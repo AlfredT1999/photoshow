@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import { View, Button, TextInput } from 'react-native';
 import firebase from 'firebase/app';
+import "firebase/firestore";
 require('firebase/auth');
 
 export default class Register extends Component {
@@ -23,27 +24,21 @@ export default class Register extends Component {
 
     // This method makes the authorization for create the user email
     // and password:
-    onSignUp(){
+    onSignUp() {
         const { email, password, name } = this.state;
-        
         firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((result) => {
-
-            // collection users is created in firebase, then when the
-            // user is auth, the name and email is set in the collection
-            // on firebase:
-            firebase.firestore().collection('users')
-            .doc(firebase.auth().currentUser.uid)
-            .set({
-                name, 
-                email
-            });
-
-            console.log(result);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            .then((result) => {
+                firebase.firestore().collection("users")
+                    .doc(firebase.auth().currentUser.uid)
+                    .set({
+                        name,
+                        email
+                    })
+                console.log(result)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     render() {
