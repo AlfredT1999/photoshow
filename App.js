@@ -35,7 +35,8 @@ export class App extends Component {
   }
 
   // componentDidMount() is a hook that gets invoked right after 
-  // a React component has been mounted aka after the first render() lifecycle.
+  // a React component has been mounted aka after the first render() 
+  // lifecycle.
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (!user) {
