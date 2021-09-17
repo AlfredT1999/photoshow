@@ -25,9 +25,20 @@ export default class Register extends Component {
     // and password:
     onSignUp(){
         const { email, password, name } = this.state;
-
+        
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
+
+            // collection users is created in firebase, then when the
+            // user is auth, the name and email is set in the collection
+            // on firebase:
+            firebase.firestore().collection('users')
+            .doc(firebase.auth().currentUser.uid)
+            .set({
+                name, 
+                email
+            });
+
             console.log(result);
         })
         .catch((error) => {
