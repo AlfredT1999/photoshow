@@ -12,7 +12,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './redux/reducers'
 import thunk from 'redux-thunk'
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -98,7 +98,7 @@ export class App extends Component {
               component={MainScreen} 
               options={{headerShown: false}} />
           </Stack.Navigator>
-      </NavigationContainer>
+        </NavigationContainer>
       </Provider>
     );
   }
