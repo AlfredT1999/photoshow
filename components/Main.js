@@ -2,32 +2,23 @@
 // inside the componets/auth folder:
 
 import React, { Component } from 'react'
-import {View, Text} from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {fetchUser} from '../Redux/actions/index'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FeedScreen from './main/Feed'
+
+const Tab = createBottomTabNavigator();
 
 export class Main extends Component {
     componentDidMount() {
       this.props.fetchUser();
     }
     render() {
-        const {currentUser} = this.props;
-
-        console.log(currentUser);
-
-        if(currentUser === undefined){
-            return (
-                <View style={{flex: 1, justifyContent: 'center'}}></View>
-            )
-        }
-
         return (
-            <View style={{flex: 1, justifyContent: 'center'}}>
-                <Text>
-                     {currentUser.name} is logged in.
-                </Text>
-            </View>
+            <Tab.Navigator>
+                <Tab.Screen name="Feed" component={FeedScreen} />
+            </Tab.Navigator>
         )
     }
 }
