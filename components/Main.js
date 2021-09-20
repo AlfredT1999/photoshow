@@ -5,12 +5,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {fetchUser} from '../Redux/actions/index'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import FeedScreen from './main/Feed'
 import ProfileScreen from './main/Profile'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 const EmptyScreen = () => {
     return(null);
 }
@@ -22,7 +22,7 @@ export class Main extends Component {
     render() {
         return (
             // It always initilize into the Feed.
-            <Tab.Navigator initialRouteName="Feed">
+            <Tab.Navigator initialRouteName="Feed" labeled={false}>
                 <Tab.Screen name="Feed" component={FeedScreen} 
                     options={{tabBarIcon: ({color, size}) => (
                         <MaterialCommunityIcons name="home" color={color} size={26}/>
