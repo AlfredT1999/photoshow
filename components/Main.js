@@ -7,11 +7,13 @@ import { bindActionCreators } from 'redux'
 import {fetchUser} from '../Redux/actions/index'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import FeedScreen from './main/Feed'
-import AddScreen from './main/Add'
 import ProfileScreen from './main/Profile'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const Tab = createBottomTabNavigator();
+const EmptyScreen = () => {
+    return(null);
+}
 
 export class Main extends Component {
     componentDidMount() {
@@ -19,7 +21,8 @@ export class Main extends Component {
     }
     render() {
         return (
-            <Tab.Navigator>
+            // It always initilize into the Feed.
+            <Tab.Navigator initialRouteName="Feed">
                 <Tab.Screen name="Feed" component={FeedScreen} 
                     options={{tabBarIcon: ({color, size}) => (
                         <MaterialCommunityIcons name="home" color={color} size={26}/>
@@ -27,9 +30,15 @@ export class Main extends Component {
                     }}
                 />
 
-                <Tab.Screen name="Add" component={AddScreen} 
+                <Tab.Screen name="AddContainer" component={EmptyScreen} 
+                    listeners={({navigation}) => ({
+                        tabPress: event => {
+                            event.preventDefault();
+                            navigation.navigate("Add")
+                        }
+                    })}
                     options={{tabBarIcon: ({color, size}) => (
-                        <MaterialCommunityIcons name="plus-blox" color={color} size={26}/>
+                        <MaterialCommunityIcons name="plus-box" color={color} size={26}/>
                     ),
                     }}
                 />
