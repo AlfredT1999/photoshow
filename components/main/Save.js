@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 require('firebase/firestore');
 require('firebase/firebase-storage');
 
-export default function Save(props) {
+export default function Save(props, {navigation}) {
     const [caption, setCaption] = useState("");
 
     const uploadImage = async () => {
@@ -40,6 +40,21 @@ export default function Save(props) {
         }
 
         task.on("state_changed", taskProgress, taskError, taskCompleted);
+    }
+
+    const savePostData = (downloadURL) => {
+        firebase.firestore()
+            .collection('posts')
+            .doc(firebase.auth().currentUser.uid)
+            .collection("userPosts")
+            .add({
+                downloadURL,
+                caption,
+                likesCount: 0,
+                creation: firebase.firestore.FieldValue.serverTimestamp()
+            }).then((function () {
+                props.navigation.popToTop()
+            }))
     }
 
     return (
