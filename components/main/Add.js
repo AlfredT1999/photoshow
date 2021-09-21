@@ -1,3 +1,5 @@
+// The documentation is in expo camera:
+
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { Camera } from 'expo-camera';
