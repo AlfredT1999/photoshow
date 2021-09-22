@@ -4,7 +4,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {fetchUser, fetchUserPosts} from '../Redux/actions/index'
+import {fetchUser, fetchUserPosts, fetchUserFollowing} from '../Redux/actions/index'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import FeedScreen from './main/Feed'
 import ProfileScreen from './main/Profile'
@@ -21,7 +21,9 @@ export class Main extends Component {
     componentDidMount() {
       this.props.fetchUser();
       this.props.fetchUserPosts();
+      this.props.fetchUserFollowing();
     }
+
     render() {
         return (
             // It always initilize into the Feed.
@@ -73,7 +75,7 @@ export class Main extends Component {
 const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser
 })
-const mapDispatchProps = (dispatch) => bindActionCreators({fetchUser, fetchUserPosts}, dispatch)
+const mapDispatchProps = (dispatch) => bindActionCreators({fetchUser, fetchUserPosts, fetchUserFollowing}, dispatch)
 
 // Added mapStateToProps instead null means that I able to access the users data inside our component:
 export default connect(mapStateToProps, mapDispatchProps)(Main)

@@ -47,7 +47,16 @@ function Profile(props) {
                 setUserPosts(posts);
             })
         }
-    }, [props.route.params.uid]);
+
+        // The function index search if it contains something then it will return
+        // some index major than -1:
+        if(props.following.indexOf(props.route.params.uid) > -1) {
+            setFollowing(true);
+        }else{
+            setFollowing(false);
+        }
+
+    }, [props.route.params.uid, props.following]);
 
     // When hit follow this happens:
     const onFollow = () => {
@@ -81,7 +90,7 @@ function Profile(props) {
 
                 {props.route.params.uid !== firebase.auth().currentUser.uid ? 
                 (
-                    <View>
+                    <View style={styles.container}>
                         {following ? (
                             <Button 
                                 title="Following"
@@ -137,7 +146,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser,
-    posts: store.userState.posts
+    posts: store.userState.posts,
+    following: store.userState.following
 })
 
 export default connect(mapStateToProps, null)(Profile)
