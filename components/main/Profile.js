@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text, Image, FlatList, StyleSheet } from 'react-native'
 import {connect} from 'react-redux'
+import firebase from 'firebase'
+require('firebase/firestore')
 
 function Profile(props) {
     const {currentUser, posts} = props;
@@ -33,8 +35,7 @@ function Profile(props) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        marginTop: 40
+        flex: 1
     },
     containerInfo: {
         margin: 20
@@ -43,11 +44,11 @@ const styles = StyleSheet.create({
         flex: 1
     },
     containerImage: {
-        flex: 1/1
+        flex: 1 / 3
     },
     image: {
-        flex: 1, 
-        aspectRatio: 1/1
+        flex: 1,
+        aspectRatio: 1 / 1
     }
 })
 
