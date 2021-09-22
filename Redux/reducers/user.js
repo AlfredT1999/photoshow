@@ -2,7 +2,7 @@ import { USER_STATE_CHANGE, USER_POSTS_STATE_CHANGE } from "../constants"
 
 const initialState = {
     currentUser: null,
-    posts: []
+    posts: [],
 }
 
 // The parameter action has the next function:

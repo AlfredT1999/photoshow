@@ -67,7 +67,7 @@ function Profile(props) {
                         <View style={styles.containerImage}>
                             <Image
                                 style={styles.image}
-                                source={{uri: item.downloadURL}}
+                                source={{ uri: item.downloadURL }}
                             />
                         </View>
                     )}
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 1,
+        height: 100, 
         aspectRatio: 1 / 1
     }
 })

@@ -1,6 +1,9 @@
 import firebase from 'firebase'
 import {USER_STATE_CHANGE, USER_POSTS_STATE_CHANGE} from '../constants/index'
 
+require('firebase/firestore')
+
+
 export function fetchUser(){
     return ((dispatch) => {
         firebase.firestore()
