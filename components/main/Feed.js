@@ -10,23 +10,16 @@ function Feed(props) {
     useEffect(() => {
         let posts = [];
 
-        if (props.usersFollowingLoaded == props.following.length) {
-            for (let i = 0; i < props.following.length; i++) {
-                const user = props.users.find(el => el.uid === props.following[i]);
-
-                if(user !== undefined) {
-                    posts = [...posts, ...user.posts]
-                }
-            }
+        if (props.usersFollowingLoaded == props.following.length && props.following.length !== 0) {
             
-            props.sort(function (x, y) {
+            props.feed.sort(function (x, y) {
                 return x.creation - y.creation;
             })
 
-            setPosts(posts);
+            setPosts(props.feed);
         }
 
-    }, [props.usersFollowingLoaded])
+    }, [props.usersFollowingLoaded, props.Feed])
 
     return (
         <View style={styles.container}>
@@ -77,7 +70,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser,
     following: store.userState.following,
-    users: store.userState.users,
+    feed: store.userState.feed,
     usersFollowingLoaded: store.userState.usersFollowingLoaded,
 })
 
