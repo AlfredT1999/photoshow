@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 1,
-        height: 100, 
+        height: 50, 
         aspectRatio: 1 / 1
     }
 })
