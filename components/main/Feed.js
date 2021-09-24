@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 1,
-        height: 50, 
+        height: 100, 
         aspectRatio: 1 / 1
     }
 })
@@ -78,6 +78,7 @@ const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser,
     following: store.userState.following,
     users: store.userState.users,
+    feed: store.usersState.feed,
     usersLoaded: store.userState.usersLoaded,
 })
 
